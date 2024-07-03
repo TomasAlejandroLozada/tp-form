@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Adeudo</title>
+</head>
+<body>
+    <h2>Formulario de Adeudo</h2>
+    <form action="procesar.php" method="POST">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br><br>
+        
+        <label for="monto">Monto adeudado:</label>
+        <select id="monto" name="monto" required>
+            <option value="1-1000">1 - 1000</option>
+            <option value="1001-10000">1001 - 10000</option>
+            <option value="mas-de-10000">Más de 10000</option>
+        </select><br><br>
+        
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado de Adeudo</title>
+</head>
+<body>
+    <h2>Resultado de Adeudo</h2>
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $nombre = $_POST["nombre"];
+        $monto = $_POST["monto"];
+        if ($monto == "mas-de-10000") {
+            echo "<p>$nombre debe pagar un recargo porque el monto adeudado supera los 10000.</p>";
+        } else {
+            echo "<p>$nombre no debe pagar recargo por el monto adeudado seleccionado.</p>";
+        }
+    } else {
+        echo "<p>No se han recibido datos.</p>";
+    }
+    ?>
+</body>
+</html>
