@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Suscripción</title>
+</head>
+<body>
+    <h2>Formulario de Suscripción</h2>
+    <form action="procesar.php" method="POST">
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre" required><br><br>
+        
+        <label for="apellido">Apellido:</label><br>
+        <input type="text" id="apellido" name="apellido" required><br><br>
+        
+        <label for="edad">Edad:</label><br>
+        <input type="number" id="edad" name="edad" required><br><br>
+        
+        <label for="dni">DNI:</label><br>
+        <input type="text" id="dni" name="dni" required><br><br>
+        
+        <label for="fecha_nacimiento">Fecha de Nacimiento:</label><br>
+        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required><br><br>
+        
+        <label>Género:</label><br>
+        <input type="radio" id="genero_masculino" name="genero" value="Masculino" required>
+        <label for="genero_masculino">Masculino</label><br>
+        
+        <input type="radio" id="genero_femenino" name="genero" value="Femenino">
+        <label for="genero_femenino">Femenino</label><br>
+        
+        <input type="radio" id="genero_otro" name="genero" value="Otro">
+        <label for="genero_otro">Otro</label><br><br>
+        
+        <label for="lugar_nacimiento">Lugar de Nacimiento:</label><br>
+        <input type="text" id="lugar_nacimiento" name="lugar_nacimiento" required><br><br>
+        
+        <label for="direccion">Dirección:</label><br>
+        <textarea id="direccion" name="direccion" rows="4" required></textarea><br><br>
+        
+        <label for="intereses">Intereses y/o Hobbies:</label><br>
+        <textarea id="intereses" name="intereses" rows="4"></textarea><br><br>
+        
+        <label for="comentarios">Comentarios:</label><br>
+        <textarea id="comentarios" name="comentarios" rows="4"></textarea><br><br>
+        
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificaciones Realizadas</title>
+</head>
+<body>
+    <h2>Modificaciones Realizadas</h2>
+    <?php
+  
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Obtener datos del formulario
+        $nombre = $_POST["nombre"];
+        $apellido = $_POST["apellido"];
+        $edad = $_POST["edad"];
+        $dni = $_POST["dni"];
+        $fecha_nacimiento = $_POST["fecha_nacimiento"];
+        $genero = $_POST["genero"];
+        $lugar_nacimiento = $_POST["lugar_nacimiento"];
+        $direccion = $_POST["direccion"];
+        $intereses = $_POST["intereses"];
+        $comentarios = $_POST["comentarios"];
+
+        echo "<p><strong>Nombre:</strong> $nombre $apellido</p>";
+        echo "<p><strong>Edad:</strong> $edad años</p>";
+        echo "<p><strong>DNI:</strong> $dni</p>";
+        echo "<p><strong>Fecha de Nacimiento:</strong> $fecha_nacimiento</p>";
+        echo "<p><strong>Género:</strong> $genero</p>";
+        echo "<p><strong>Lugar de Nacimiento:</strong> $lugar_nacimiento</p>";
+        echo "<p><strong>Dirección:</strong> $direccion</p>";
+        echo "<p><strong>Intereses y/o Hobbies:</strong> $intereses</p>";
+        echo "<p><strong>Comentarios:</strong> $comentarios</p>";
+    } else {
+        echo "<p>No se han recibido datos.</p>";
+    }
+    ?>
+</body>
+</html>
