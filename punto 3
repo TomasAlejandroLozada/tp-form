@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Deportes</title>
+</head>
+<body>
+    <h2>Formulario de Deportes</h2>
+    <form action="procesar.php" method="POST">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br><br>
+        
+        <label>Deportes que practica:</label><br>
+        <input type="checkbox" id="futbol" name="deportes[]" value="futbol">
+        <label for="futbol">Fútbol</label><br>
+        
+        <input type="checkbox" id="basket" name="deportes[]" value="basket">
+        <label for="basket">Basket</label><br>
+        
+        <input type="checkbox" id="tennis" name="deportes[]" value="tennis">
+        <label for="tennis">Tenis</label><br>
+        
+        <input type="checkbox" id="voley" name="deportes[]" value="voley">
+        <label for="voley">Vóley</label><br><br>
+        
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado de Deportes</title>
+</head>
+<body>
+    <h2>Resultado de Deportes</h2>
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $nombre = $_POST["nombre"];
+        
+        if (isset($_POST["deportes"])) {
+            $deportes = $_POST["deportes"];
+            $cantidad_deportes = count($deportes);
+            echo "<p>$nombre practica $cantidad_deportes deporte(s): ";
+            echo implode(", ", $deportes) . "</p>";
+        } else {
+            echo "<p>$nombre no ha seleccionado ningún deporte.</p>";
+        }
+    } else {
+        echo "<p>No se han recibido datos.</p>";
+    }
+    ?>
+</body>
+</html>
